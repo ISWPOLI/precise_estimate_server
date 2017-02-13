@@ -1,0 +1,26 @@
+-- Database: "PreciseEstimate"
+
+-- DROP DATABASE "PreciseEstimate";
+
+CREATE DATABASE "PreciseEstimate"
+  WITH OWNER = postgres
+       ENCODING = 'UTF8'
+       TABLESPACE = pg_default
+       LC_COLLATE = 'Spanish_Colombia.1252'
+       LC_CTYPE = 'Spanish_Colombia.1252'
+       CONNECTION LIMIT = -1;
+
+
+-- Table: "User"
+
+-- DROP TABLE "User";
+
+CREATE TABLE "User"
+(
+
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE "User"
+  OWNER TO postgres;
