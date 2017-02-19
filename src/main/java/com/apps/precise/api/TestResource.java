@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.apps.precise.rest;
+package com.apps.precise.api;
 
+import com.apps.precise.entities.Test;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
@@ -32,17 +33,24 @@ public class TestResource {
     }
 
     /**
-     * Retrieves representation of an instance of com.apps.precise.rest.TestResource
+     * Retrieves representation of an instance of
+     * com.apps.precise.rest.TestResource
+     *
      * @return an instance of java.lang.String
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getJson() {
-        return "{\"pepe\":1}";
+        Test t = new Test();
+        t.a = "algo";
+        t.b = 1;
+        t.c[0] = "linea1";
+        return t.toJSON();
     }
 
     /**
      * PUT method for updating or creating an instance of TestResource
+     *
      * @param content representation for the resource
      */
     @PUT

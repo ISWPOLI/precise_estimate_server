@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.apps.precise.rest;
+package com.apps.precise.api;
 
 import java.util.Set;
 import javax.ws.rs.core.Application;
@@ -12,7 +12,7 @@ import javax.ws.rs.core.Application;
  *
  * @author felipe
  */
-@javax.ws.rs.ApplicationPath("rest")
+@javax.ws.rs.ApplicationPath("api")
 public class ApplicationConfig extends Application {
 
     @Override
@@ -29,7 +29,12 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
-        resources.add(com.apps.precise.rest.TestResource.class);
+        resources.add(com.apps.precise.api.RolFacadeREST.class);
+        resources.add(com.apps.precise.api.TestResource.class);
+        resources.add(com.apps.precise.api.UserDataFacadeREST.class);
+        resources.add(com.apps.precise.api.UserDataParameterFacadeREST.class);
+        resources.add(com.apps.precise.api.UserFacadeREST.class);
+        resources.add(com.apps.precise.api.UserRolFacadeREST.class);
     }
     
 }
