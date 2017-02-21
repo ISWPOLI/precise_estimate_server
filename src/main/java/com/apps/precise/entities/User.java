@@ -6,7 +6,6 @@
 package com.apps.precise.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,11 +14,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
-//import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -27,10 +24,10 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "user")
-//@XmlRootElement
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
-    , @NamedQuery(name = "User.findByCodUser", query = "SELECT u FROM User u WHERE u.codUser = :codUser")
+    , @NamedQuery(name = "User.findByIdUser", query = "SELECT u FROM User u WHERE u.idUser = :idUser")
     , @NamedQuery(name = "User.findByName", query = "SELECT u FROM User u WHERE u.name = :name")
     , @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email")
     , @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password")})
@@ -40,8 +37,8 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "cod_user")
-    private Integer codUser;
+    @Column(name = "id_user")
+    private Integer idUser;
     @Size(max = 255)
     @Column(name = "name")
     private String name;
@@ -52,24 +49,20 @@ public class User implements Serializable {
     @Size(max = 255)
     @Column(name = "password")
     private String password;
-    @OneToMany(mappedBy = "codUser")
-    private Collection<UserRol> userRolCollection;
-    @OneToMany(mappedBy = "codUser")
-    private Collection<UserData> userDataCollection;
 
     public User() {
     }
 
-    public User(Integer codUser) {
-        this.codUser = codUser;
+    public User(Integer idUser) {
+        this.idUser = idUser;
     }
 
-    public Integer getCodUser() {
-        return codUser;
+    public Integer getIdUser() {
+        return idUser;
     }
 
-    public void setCodUser(Integer codUser) {
-        this.codUser = codUser;
+    public void setIdUser(Integer idUser) {
+        this.idUser = idUser;
     }
 
     public String getName() {
@@ -96,28 +89,10 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    @XmlTransient
-    public Collection<UserRol> getUserRolCollection() {
-        return userRolCollection;
-    }
-
-    public void setUserRolCollection(Collection<UserRol> userRolCollection) {
-        this.userRolCollection = userRolCollection;
-    }
-
-    @XmlTransient
-    public Collection<UserData> getUserDataCollection() {
-        return userDataCollection;
-    }
-
-    public void setUserDataCollection(Collection<UserData> userDataCollection) {
-        this.userDataCollection = userDataCollection;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (codUser != null ? codUser.hashCode() : 0);
+        hash += (idUser != null ? idUser.hashCode() : 0);
         return hash;
     }
 
@@ -128,7 +103,7 @@ public class User implements Serializable {
             return false;
         }
         User other = (User) object;
-        if ((this.codUser == null && other.codUser != null) || (this.codUser != null && !this.codUser.equals(other.codUser))) {
+        if ((this.idUser == null && other.idUser != null) || (this.idUser != null && !this.idUser.equals(other.idUser))) {
             return false;
         }
         return true;
@@ -136,7 +111,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "com.apps.precise.entities.User[ codUser=" + codUser + " ]";
+        return "com.apps.precise.entities.User[ idUser=" + idUser + " ]";
     }
     
 }

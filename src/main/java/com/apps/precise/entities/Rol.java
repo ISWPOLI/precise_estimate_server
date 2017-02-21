@@ -6,7 +6,6 @@
 package com.apps.precise.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,11 +14,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -30,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Rol.findAll", query = "SELECT r FROM Rol r")
-    , @NamedQuery(name = "Rol.findByCodRol", query = "SELECT r FROM Rol r WHERE r.codRol = :codRol")
+    , @NamedQuery(name = "Rol.findByIdRol", query = "SELECT r FROM Rol r WHERE r.idRol = :idRol")
     , @NamedQuery(name = "Rol.findByName", query = "SELECT r FROM Rol r WHERE r.name = :name")})
 public class Rol implements Serializable {
 
@@ -38,27 +35,25 @@ public class Rol implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "cod_rol")
-    private Integer codRol;
+    @Column(name = "id_rol")
+    private Integer idRol;
     @Size(max = 255)
     @Column(name = "name")
     private String name;
-    @OneToMany(mappedBy = "codRol")
-    private Collection<UserRol> userRolCollection;
 
     public Rol() {
     }
 
-    public Rol(Integer codRol) {
-        this.codRol = codRol;
+    public Rol(Integer idRol) {
+        this.idRol = idRol;
     }
 
-    public Integer getCodRol() {
-        return codRol;
+    public Integer getIdRol() {
+        return idRol;
     }
 
-    public void setCodRol(Integer codRol) {
-        this.codRol = codRol;
+    public void setIdRol(Integer idRol) {
+        this.idRol = idRol;
     }
 
     public String getName() {
@@ -69,19 +64,10 @@ public class Rol implements Serializable {
         this.name = name;
     }
 
-    @XmlTransient
-    public Collection<UserRol> getUserRolCollection() {
-        return userRolCollection;
-    }
-
-    public void setUserRolCollection(Collection<UserRol> userRolCollection) {
-        this.userRolCollection = userRolCollection;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (codRol != null ? codRol.hashCode() : 0);
+        hash += (idRol != null ? idRol.hashCode() : 0);
         return hash;
     }
 
@@ -92,7 +78,7 @@ public class Rol implements Serializable {
             return false;
         }
         Rol other = (Rol) object;
-        if ((this.codRol == null && other.codRol != null) || (this.codRol != null && !this.codRol.equals(other.codRol))) {
+        if ((this.idRol == null && other.idRol != null) || (this.idRol != null && !this.idRol.equals(other.idRol))) {
             return false;
         }
         return true;
@@ -100,7 +86,7 @@ public class Rol implements Serializable {
 
     @Override
     public String toString() {
-        return "com.apps.precise.entities.Rol[ codRol=" + codRol + " ]";
+        return "com.apps.precise.entities.Rol[ idRol=" + idRol + " ]";
     }
     
 }

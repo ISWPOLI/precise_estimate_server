@@ -12,13 +12,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
-//import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -26,10 +24,12 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "user_data")
-//@XmlRootElement
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "UserData.findAll", query = "SELECT u FROM UserData u")
-    , @NamedQuery(name = "UserData.findByCodUserData", query = "SELECT u FROM UserData u WHERE u.codUserData = :codUserData")
+    , @NamedQuery(name = "UserData.findByIdUserData", query = "SELECT u FROM UserData u WHERE u.idUserData = :idUserData")
+    , @NamedQuery(name = "UserData.findByIdUser", query = "SELECT u FROM UserData u WHERE u.idUser = :idUser")
+    , @NamedQuery(name = "UserData.findByIdUserDataParameter", query = "SELECT u FROM UserData u WHERE u.idUserDataParameter = :idUserDataParameter")
     , @NamedQuery(name = "UserData.findByValue", query = "SELECT u FROM UserData u WHERE u.value = :value")})
 public class UserData implements Serializable {
 
@@ -37,31 +37,45 @@ public class UserData implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "cod_user_data")
-    private Integer codUserData;
+    @Column(name = "id_user_data")
+    private Integer idUserData;
+    @Column(name = "id_user")
+    private Integer idUser;
+    @Column(name = "id_user_data_parameter")
+    private Integer idUserDataParameter;
     @Size(max = 255)
     @Column(name = "value")
     private String value;
-    @JoinColumn(name = "cod_user", referencedColumnName = "cod_user")
-    @ManyToOne
-    private User codUser;
-    @JoinColumn(name = "cod_user_data_parameter", referencedColumnName = "cod_user_data_parameter")
-    @ManyToOne
-    private UserDataParameter codUserDataParameter;
 
     public UserData() {
     }
 
-    public UserData(Integer codUserData) {
-        this.codUserData = codUserData;
+    public UserData(Integer idUserData) {
+        this.idUserData = idUserData;
     }
 
-    public Integer getCodUserData() {
-        return codUserData;
+    public Integer getIdUserData() {
+        return idUserData;
     }
 
-    public void setCodUserData(Integer codUserData) {
-        this.codUserData = codUserData;
+    public void setIdUserData(Integer idUserData) {
+        this.idUserData = idUserData;
+    }
+
+    public Integer getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(Integer idUser) {
+        this.idUser = idUser;
+    }
+
+    public Integer getIdUserDataParameter() {
+        return idUserDataParameter;
+    }
+
+    public void setIdUserDataParameter(Integer idUserDataParameter) {
+        this.idUserDataParameter = idUserDataParameter;
     }
 
     public String getValue() {
@@ -72,26 +86,10 @@ public class UserData implements Serializable {
         this.value = value;
     }
 
-    public User getCodUser() {
-        return codUser;
-    }
-
-    public void setCodUser(User codUser) {
-        this.codUser = codUser;
-    }
-
-    public UserDataParameter getCodUserDataParameter() {
-        return codUserDataParameter;
-    }
-
-    public void setCodUserDataParameter(UserDataParameter codUserDataParameter) {
-        this.codUserDataParameter = codUserDataParameter;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (codUserData != null ? codUserData.hashCode() : 0);
+        hash += (idUserData != null ? idUserData.hashCode() : 0);
         return hash;
     }
 
@@ -102,7 +100,7 @@ public class UserData implements Serializable {
             return false;
         }
         UserData other = (UserData) object;
-        if ((this.codUserData == null && other.codUserData != null) || (this.codUserData != null && !this.codUserData.equals(other.codUserData))) {
+        if ((this.idUserData == null && other.idUserData != null) || (this.idUserData != null && !this.idUserData.equals(other.idUserData))) {
             return false;
         }
         return true;
@@ -110,7 +108,7 @@ public class UserData implements Serializable {
 
     @Override
     public String toString() {
-        return "com.apps.precise.entities.UserData[ codUserData=" + codUserData + " ]";
+        return "com.apps.precise.entities.UserData[ idUserData=" + idUserData + " ]";
     }
     
 }

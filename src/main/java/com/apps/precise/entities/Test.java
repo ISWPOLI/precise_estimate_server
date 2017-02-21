@@ -14,7 +14,7 @@ import com.google.gson.Gson;
 public class Test {
 
     public String a;
-    public int b;
+    public boolean b;
     public String[] c;
 
     public Test() {

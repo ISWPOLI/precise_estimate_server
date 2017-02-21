@@ -12,8 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -25,60 +23,60 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "user_rol")
-//@XmlRootElement
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "UserRol.findAll", query = "SELECT u FROM UserRol u")
-    , @NamedQuery(name = "UserRol.findByCodUserRol", query = "SELECT u FROM UserRol u WHERE u.codUserRol = :codUserRol")})
+    , @NamedQuery(name = "UserRol.findByIdUserRol", query = "SELECT u FROM UserRol u WHERE u.idUserRol = :idUserRol")
+    , @NamedQuery(name = "UserRol.findByIdUser", query = "SELECT u FROM UserRol u WHERE u.idUser = :idUser")
+    , @NamedQuery(name = "UserRol.findByIdRol", query = "SELECT u FROM UserRol u WHERE u.idRol = :idRol")})
 public class UserRol implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "cod_user_rol")
-    private Integer codUserRol;
-    @JoinColumn(name = "cod_rol", referencedColumnName = "cod_rol")
-    @ManyToOne
-    private Rol codRol;
-    @JoinColumn(name = "cod_user", referencedColumnName = "cod_user")
-    @ManyToOne
-    private User codUser;
+    @Column(name = "id_user_rol")
+    private Integer idUserRol;
+    @Column(name = "id_user")
+    private Integer idUser;
+    @Column(name = "id_rol")
+    private Integer idRol;
 
     public UserRol() {
     }
 
-    public UserRol(Integer codUserRol) {
-        this.codUserRol = codUserRol;
+    public UserRol(Integer idUserRol) {
+        this.idUserRol = idUserRol;
     }
 
-    public Integer getCodUserRol() {
-        return codUserRol;
+    public Integer getIdUserRol() {
+        return idUserRol;
     }
 
-    public void setCodUserRol(Integer codUserRol) {
-        this.codUserRol = codUserRol;
+    public void setIdUserRol(Integer idUserRol) {
+        this.idUserRol = idUserRol;
     }
 
-    public Rol getCodRol() {
-        return codRol;
+    public Integer getIdUser() {
+        return idUser;
     }
 
-    public void setCodRol(Rol codRol) {
-        this.codRol = codRol;
+    public void setIdUser(Integer idUser) {
+        this.idUser = idUser;
     }
 
-    public User getCodUser() {
-        return codUser;
+    public Integer getIdRol() {
+        return idRol;
     }
 
-    public void setCodUser(User codUser) {
-        this.codUser = codUser;
+    public void setIdRol(Integer idRol) {
+        this.idRol = idRol;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (codUserRol != null ? codUserRol.hashCode() : 0);
+        hash += (idUserRol != null ? idUserRol.hashCode() : 0);
         return hash;
     }
 
@@ -89,7 +87,7 @@ public class UserRol implements Serializable {
             return false;
         }
         UserRol other = (UserRol) object;
-        if ((this.codUserRol == null && other.codUserRol != null) || (this.codUserRol != null && !this.codUserRol.equals(other.codUserRol))) {
+        if ((this.idUserRol == null && other.idUserRol != null) || (this.idUserRol != null && !this.idUserRol.equals(other.idUserRol))) {
             return false;
         }
         return true;
@@ -97,7 +95,7 @@ public class UserRol implements Serializable {
 
     @Override
     public String toString() {
-        return "com.apps.precise.entities.UserRol[ codUserRol=" + codUserRol + " ]";
+        return "com.apps.precise.entities.UserRol[ idUserRol=" + idUserRol + " ]";
     }
     
 }

@@ -6,6 +6,7 @@
 package com.apps.precise.api;
 
 import com.apps.precise.entities.Test;
+import com.apps.precise.controllers.LoginController;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
@@ -41,9 +42,11 @@ public class TestResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getJson() {
+        LoginController c = new LoginController();
+        
         Test t = new Test();
         t.a = "algo";
-        t.b = 1;
+        t.b = c.login("felipecanol@gmail.com", "123");
         t.c[0] = "linea1";
         return t.toJSON();
     }
