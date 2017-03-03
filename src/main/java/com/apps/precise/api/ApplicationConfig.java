@@ -29,13 +29,20 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
+        resources.add(com.apps.precise.api.ClientFacadeREST.class);
+        resources.add(com.apps.precise.api.ClientProjectFacadeREST.class);
         resources.add(com.apps.precise.api.LoginResource.class);
+        resources.add(com.apps.precise.api.ProjectFacadeREST.class);
         resources.add(com.apps.precise.api.RolFacadeREST.class);
+        resources.add(com.apps.precise.api.TaskFacadeREST.class);
+        resources.add(com.apps.precise.api.TaskProjectFacadeREST.class);
         resources.add(com.apps.precise.api.TestResource.class);
         resources.add(com.apps.precise.api.UserDataFacadeREST.class);
         resources.add(com.apps.precise.api.UserDataParameterFacadeREST.class);
         resources.add(com.apps.precise.api.UserFacadeREST.class);
+        resources.add(com.apps.precise.api.UserProjectFacadeREST.class);
         resources.add(com.apps.precise.api.UserRolFacadeREST.class);
+        resources.add(com.apps.precise.api.UserTaskFacadeREST.class);
     }
     
 }

@@ -6,7 +6,9 @@
 package com.apps.precise.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,8 +16,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -30,6 +34,14 @@ import javax.validation.constraints.Size;
     , @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email")
     , @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password")})
 public class User implements Serializable {
+
+    @Size(max = 45)
+    @Column(name = "recovery")
+    private String recovery;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUser")
+    private Collection<UserTask> userTaskCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUser")
+    private Collection<UserProject> userProjectCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -110,6 +122,32 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "com.apps.precise.entities.User[ idUser=" + idUser + " ]";
+    }
+
+    public String getRecovery() {
+        return recovery;
+    }
+
+    public void setRecovery(String recovery) {
+        this.recovery = recovery;
+    }
+
+    @XmlTransient
+    public Collection<UserTask> getUserTaskCollection() {
+        return userTaskCollection;
+    }
+
+    public void setUserTaskCollection(Collection<UserTask> userTaskCollection) {
+        this.userTaskCollection = userTaskCollection;
+    }
+
+    @XmlTransient
+    public Collection<UserProject> getUserProjectCollection() {
+        return userProjectCollection;
+    }
+
+    public void setUserProjectCollection(Collection<UserProject> userProjectCollection) {
+        this.userProjectCollection = userProjectCollection;
     }
     
 }

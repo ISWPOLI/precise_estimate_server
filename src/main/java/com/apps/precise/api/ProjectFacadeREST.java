@@ -5,7 +5,7 @@
  */
 package com.apps.precise.api;
 
-import com.apps.precise.entities.User;
+import com.apps.precise.entities.Project;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -25,27 +25,27 @@ import javax.ws.rs.core.MediaType;
  * @author User
  */
 @Stateless
-@Path("user")
-public class UserFacadeREST extends AbstractFacade<User> {
+@Path("project")
+public class ProjectFacadeREST extends AbstractFacade<Project> {
 
     @PersistenceContext(unitName = "com.apps_precise_war_1.0PU")
     private EntityManager em;
 
-    public UserFacadeREST() {
-        super(User.class);
+    public ProjectFacadeREST() {
+        super(Project.class);
     }
 
     @POST
     @Override
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void create(User entity) {
+    @Consumes({MediaType.APPLICATION_JSON})
+    public void create(Project entity) {
         super.create(entity);
     }
 
     @PUT
     @Path("{id}")
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") Integer id, User entity) {
+    @Consumes({MediaType.APPLICATION_JSON})
+    public void edit(@PathParam("id") Integer id, Project entity) {
         super.edit(entity);
     }
 
@@ -57,22 +57,22 @@ public class UserFacadeREST extends AbstractFacade<User> {
 
     @GET
     @Path("{id}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public User find(@PathParam("id") Integer id) {
+    @Produces({MediaType.APPLICATION_JSON})
+    public Project find(@PathParam("id") Integer id) {
         return super.find(id);
     }
 
     @GET
     @Override
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<User> findAll() {
+    @Produces({MediaType.APPLICATION_JSON})
+    public List<Project> findAll() {
         return super.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<User> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+    @Produces({MediaType.APPLICATION_JSON})
+    public List<Project> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
 
