@@ -13,6 +13,24 @@ function setup(db) {
     methods : {
     }
   });
+
+  var Status = db.define('status', {
+    id_status:  {type: 'serial', key: true}, // the auto-incrementing primary key
+    status:     {type: 'text'}
+  }, {
+    methods : {
+    }
+  });
+
+
+var Vw_project_epic = db.define('vw_project_epic', {
+    id_epic:  {type: 'serial', key: true}, // the auto-incrementing primary key
+    name_project:  {type: 'text'},
+    name_epic:     {type: 'text'}
+  }, {
+    methods : {
+    }
+  });
 }
 
 module.exports = function(host, database, cb) {
@@ -24,7 +42,7 @@ module.exports = function(host, database, cb) {
     host:     'localhost',
     database: 'precise',
     user:     'root',
-    password: 'apps123mysql',
+    password: '123456',
     protocol: 'mysql',
     port:     '3306',
     query:    {pool: true}
