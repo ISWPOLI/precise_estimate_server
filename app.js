@@ -1,52 +1,67 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+class Main {
 
-var index = require('./routes/index');
-var user = require('./routes/user');
-var status = require('./routes/status');
-var login = require('./routes/login');
-var vw_project_epic = require('./routes/vw_project_epic');
+  constructor() {
+    this.restPath = '/api';
+    this.routers = [];
+    this.express = require('express');
+    this.path = require('path');
+    this.favicon = require('serve-favicon');
+    this.logger = require('morgan');
+    this.cookieParser = require('cookie-parser');
+    this.bodyParser = require('body-parser');
 
-var app = express();
+    this.app = this.express();
+    this.app.set('views', this.path.join(__dirname, 'views'));
+    this.app.set('view engine', 'jade');
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+    this.app.use(this.favicon(this.path.join(__dirname, 'public', 'favicon.png')));
+    this.app.use(this.logger('dev'));
+    this.app.use(this.bodyParser.json());
+    this.app.use(this.bodyParser.urlencoded({ extended: false }));
+    this.app.use(this.cookieParser());
+    this.app.use(this.express.static(this.path.join(__dirname, 'public')));
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+    let index = require('./routes/api/IndexService');
+    this.app.use(index.path, index.router);
+    this.configServices();
 
-app.use('/', index);
-app.use('/api/user', user);
-app.use('/api/status', status);
-app.use('/api/login', login);
-app.use('/api/vw_project_epic', vw_project_epic);
+    // catch 404 and forward to error handler
+    this.app.use(function (req, res, next) {
+      let err = new Error('Not Found');
+      err.status = 404;
+      next(err);
+    });
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
+    // error handler
+    this.app.use(function (err, req, res, next) {
+      // set locals, only providing error in development
+      res.locals.message = err.message;
+      res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+      // render the error page
+      res.status(err.status || 500);
+      res.render('error');
+    });
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
+    module.exports = this.app;
+  }
 
-module.exports = app;
+  register(url) {
+    let def_class = require(url);
+    this.app.use(this.restPath + def_class.path, def_class.router);
+  }
+
+  configServices() {
+    let services = [
+      'LoginService',
+      'UserService',
+      'ProjectService'
+    ];
+    for (let id in services) {
+      this.register('./routes/api/' + services[id]);
+    }
+  }
+
+};
+
+new Main();
