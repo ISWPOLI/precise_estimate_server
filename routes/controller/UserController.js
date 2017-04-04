@@ -16,6 +16,10 @@ class UserController extends Controller {
             callback(rows);
         });
     }
+
+    assingValueAbility(idUser,idAbility,callback){
+        this.user.assingValueAbility(idUser, idAbility, callback);        
+    }
 }
 
 module.exports = UserController;

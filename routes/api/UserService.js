@@ -7,6 +7,7 @@ class UserService extends Service {
     super();
     this.path = '/user';
     this.router.get('/', this.listUsers.bind(this));
+    this.router.get('/assingAbility', this.assingValueAbility.bind(this));
     this.userController = new UserController();
   }
 
@@ -14,6 +15,12 @@ class UserService extends Service {
   listUsers(req, res, next) {
     this.userController.getListUsers(function (rows) {
       res.json(rows);
+    });
+  }
+
+  assingValueAbility(req, res, next){
+    this.userController.assingValueAbility(req.query.idUser,req.query.idAbility,function(data){
+      res.json({"Insert":data});
     });
   }
 
