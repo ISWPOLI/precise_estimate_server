@@ -20,6 +20,19 @@ class UserController extends Controller {
     assingValueAbility(idUser,idAbility,callback){
         this.user.assingValueAbility(idUser, idAbility, callback);        
     }
+
+    removeValueAbility(idUser, idAbility, callback){
+        this.user.removeValueAbility(idUser, idAbility, callback);        
+    }
+
+    readRolUser(idUser, callback){
+        this.user.readRolUser(idUser,callback);
+    }
+
+    assingProfile(idProfile, idUser, callback){
+        this.user.assingProfile(idProfile, idUser, callback);
+    }
+
 }
 
 module.exports = UserController;
