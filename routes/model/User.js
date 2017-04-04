@@ -66,9 +66,9 @@ class User extends Model {
         this.db.driver.execQuery(
           "SELECT r.name FROM rol r INNER JOIN user_rol ur ON r.id_rol = ur.id_rol INNER JOIN user u ON ur.id_user = u.id_user WHERE u.id_user =?",
           [idUser],
-          function (err, rows) {
+          function (err, data) {
             if (err) throw err;
-            callback(rows);
+            callback( data );
           }
         )
     }
