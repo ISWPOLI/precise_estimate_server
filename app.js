@@ -55,7 +55,8 @@ class Main {
     let services = [
       'LoginService',
       'UserService',
-      'ProjectService'
+      'ProjectService',
+      'RolService'
     ];
     for (let id in services) {
       this.register('./routes/api/' + services[id]);
