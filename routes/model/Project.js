@@ -34,10 +34,14 @@ class Project extends Model {
           [name, type, dateStart, dateEnd, valueEstimate, timeEstimate, idStatus],
           function (err, data) {
             if (err) throw err;
-            callback(   );
+            callback(  data );
           }
         )
     }
+
+    
+
+
 }
 
 module.exports = new Project();    

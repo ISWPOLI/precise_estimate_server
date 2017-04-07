@@ -21,7 +21,7 @@ class ProjectService extends Service {
   createProject(req, res, next){
     this.projectController.createProject(req.query.name, req.query.type, req.query.dateStart, req.query.dateEnd, req.query.valueEstimate, req.query.timeEstimate, req.query.idStatus, function(data){
       res.json({"Insert":data});
-    });
+    }); 
   }
 
   };
