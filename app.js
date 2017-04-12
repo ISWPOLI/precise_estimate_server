@@ -58,7 +58,10 @@ class Main {
       'ProjectService',
       'RolService',
       'AbilityService',
-      'EpicService'
+      'EpicService',
+      'FeatureService',
+      'StoryService',
+      'TaskService'
     ];
     for (let id in services) {
       this.register('./routes/api/' + services[id]);
