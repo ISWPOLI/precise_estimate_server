@@ -7,6 +7,7 @@ class FeatureController extends Controller {
         this.feature = require('../model/Feature');
     }
 
+    
     createFeature(name, idEpic, callback){
         this.feature.createFeature(name, idEpic, callback);
     }
