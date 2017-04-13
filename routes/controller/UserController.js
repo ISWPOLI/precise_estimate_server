@@ -17,19 +17,54 @@ class UserController extends Controller {
         });
     }
 
-    assingValueAbility(idUser,idAbility,callback){
-        this.user.assingValueAbility(idUser, idAbility, callback);        
+    createUser(newUser, callback) {
+        newUser.id_user = null;
+        let a = this.user.instance.create(newUser, function (err, data) {
+            if (err) callback({ st: false })
+            else {
+                data.password = null;
+                data.recovery = null;
+                callback({ st: true, data: data });
+            }
+        });
     }
 
-    removeValueAbility(idUser, idAbility, callback){
-        this.user.removeValueAbility(idUser, idAbility, callback);        
+    updateUser(editUser, callback) {
+        this.user.instance.find({ id_user: editUser.id_user }, function (err, rows) {
+            if (err) callback({ st: false })
+            else {
+                rows[0].id_profile = editUser.id_profile;
+                rows[0].name = editUser.name;
+                rows[0].email = editUser.email;
+                rows[0].password = editUser.password;
+                rows[0].recovery = editUser.recovery;
+                rows[0].save(function (err) {
+                    if (err) callback({ st: false })
+                    else {
+                        callback({ st: true, data: rows });
+                    }
+                });
+            }
+        });
     }
 
-    readRolUser(idUser, callback){
-        this.user.readRolUser(idUser,callback);
+    deleteUser(callback) {
+        callback({ "st": "ok" });
     }
 
-    assingProfile(idProfile, idUser, callback){
+    assingValueAbility(idUser, idAbility, callback) {
+        this.user.assingValueAbility(idUser, idAbility, callback);
+    }
+
+    removeValueAbility(idUser, idAbility, callback) {
+        this.user.removeValueAbility(idUser, idAbility, callback);
+    }
+
+    readRolUser(idUser, callback) {
+        this.user.readRolUser(idUser, callback);
+    }
+
+    assingProfile(idProfile, idUser, callback) {
         this.user.assingProfile(idProfile, idUser, callback);
     }
 

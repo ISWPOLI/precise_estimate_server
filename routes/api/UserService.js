@@ -7,6 +7,9 @@ class UserService extends Service {
     super();
     this.path = '/user';
     this.router.get('/', this.listUsers.bind(this));
+    this.router.post('/', this.updateUser.bind(this));
+    this.router.put('/', this.createUser.bind(this));
+    this.router.delete('/', this.deleteUser.bind(this));
     this.router.get('/assingAbility', this.assingValueAbility.bind(this));
     this.router.get('/removeAbility', this.removeValueAbility.bind(this));
     this.router.get('/readRolUser', this.readRolUser.bind(this));
@@ -21,27 +24,45 @@ class UserService extends Service {
     });
   }
 
-  assingValueAbility(req, res, next){
-    this.userController.assingValueAbility(req.query.idUser,req.query.idAbility,function(data){
-      res.json({"Insert":data});
-    });
-  }
-
-  removeValueAbility(req, res, next){
-    this.userController.removeValueAbility(req.query.idUser,req.query.idAbility,function(data){
-      res.json({"Delete":data});
-    });
-  }
-
-  readRolUser(req, res, next){
-    this.userController.readRolUser(req.query.idUser, function(rows){
+  createUser(req, res, next) {
+    this.userController.createUser(req.body, function (rows) {
       res.json(rows);
     });
   }
 
-  assingProfile(req, res, next){
-    this.userController.assingProfile(req.query.idProfile,req.query.idUser,function(data){
-      res.json({"Update":data});
+  updateUser(req, res, next) {
+    this.userController.updateUser(req.body, function (rows) {
+      res.json(rows);
+    });
+  }
+
+  deleteUser(req, res, next) {
+    this.userController.deleteUser(function (rows) {
+      res.json(rows);
+    });
+  }
+
+  assingValueAbility(req, res, next) {
+    this.userController.assingValueAbility(req.query.idUser, req.query.idAbility, function (data) {
+      res.json({ "Insert": data });
+    });
+  }
+
+  removeValueAbility(req, res, next) {
+    this.userController.removeValueAbility(req.query.idUser, req.query.idAbility, function (data) {
+      res.json({ "Delete": data });
+    });
+  }
+
+  readRolUser(req, res, next) {
+    this.userController.readRolUser(req.query.idUser, function (rows) {
+      res.json(rows);
+    });
+  }
+
+  assingProfile(req, res, next) {
+    this.userController.assingProfile(req.query.idProfile, req.query.idUser, function (data) {
+      res.json({ "Update": data });
     });
   }
 };

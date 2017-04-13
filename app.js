@@ -66,4 +66,8 @@ class Main {
 
 };
 
-new Main();
+try {
+  new Main();
+} catch (e) {
+  console.log(e);
+}

@@ -4,7 +4,7 @@ var opts = {
   host: 'localhost',
   database: 'precise',
   user: 'root',
-  password: '56789',
+  password: 'apps123mysql',
   protocol: 'mysql',
   port: '3306',
   query: { pool: true }
@@ -17,10 +17,16 @@ module.exports = function (callback) {
     callback(null, connection);
     return;
   }
-
-  orm.connect(opts, function (err, db) {
-    if (err) return callback(err);
-    connection = db;
-    callback(null, db);
-  });
+  try {
+    orm.connect(opts, function (err, db) {
+      if (err) {
+        console.log("ORM Error: ", err);
+        return;
+      }
+      connection = db;
+      callback(null, db);
+    });
+  } catch (e) {
+    console.log(e);
+  }
 };

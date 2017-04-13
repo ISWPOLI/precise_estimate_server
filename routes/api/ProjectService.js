@@ -8,12 +8,19 @@ class ProjectService extends Service {
     this.path = '/project';
     this.router.get('/', this.listProject.bind(this));
     this.router.get('/createProject', this.createProject.bind(this));
+    this.router.get('/getCompleteProject', this.getCompleteProject.bind(this));
     this.projectController = new ProjectController();
   }
 
   /* GET users listing. */
   listProject(req, res, next) {
     this.projectController.getListProject(function (rows) {
+      res.json(rows);
+    });
+  }
+
+  getCompleteProject(req, res, next) {
+    this.projectController.getCompleteProject(req.query.idProject, function (rows) {
       res.json(rows);
     });
   }
