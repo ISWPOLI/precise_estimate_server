@@ -3,8 +3,8 @@ var orm = require("orm");
 var opts = {
   host: 'localhost',
   database: 'precise',
-  user: 'root',
-  password: 'apps123mysql',
+  user: 'precise',
+  password: 'precise2017',
   protocol: 'mysql',
   port: '3306',
   query: { pool: true }
