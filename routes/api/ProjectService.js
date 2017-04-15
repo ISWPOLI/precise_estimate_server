@@ -9,6 +9,7 @@ class ProjectService extends Service {
     this.router.get('/', this.listProject.bind(this));
     this.router.get('/createProject', this.createProject.bind(this));
     this.router.get('/getCompleteProject', this.getCompleteProject.bind(this));
+    this.router.get('/assingCostProjectRol', this.assingCostProjectRol.bind(this));
     this.projectController = new ProjectController();
   }
 
@@ -27,6 +28,12 @@ class ProjectService extends Service {
 
   createProject(req, res, next){
     this.projectController.createProject(req.query.name, req.query.type, req.query.dateStart, req.query.dateEnd, req.query.valueEstimate, req.query.timeEstimate, req.query.idStatus, function(data){
+      res.json({"Insert":data});
+    }); 
+  }
+
+  assingCostProjectRol(req, res, next){
+  this.projectController.assingCostProjectRol(req.query.idProject, req.query.idRol, req.query.value, function(data){
       res.json({"Insert":data});
     }); 
   }

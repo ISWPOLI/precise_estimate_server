@@ -21,6 +21,18 @@ class TaskController extends Controller {
         this.task.editTask(name, idTask, callback);
     }
 
+    assingResponsable(idUser, idTask, callback){
+        this.task.assingResponsable(idUser, idTask, callback);
+    }
+
+    editResponsable(idUser, idTask, callback){
+        this.task.editResponsable(idUser, idTask, callback);
+    }
+
+    removeResponsable(idUser, idTask, callback){
+        this.task.removeResponsable(idUser, idTask, callback);
+    }
+
     
 }
 

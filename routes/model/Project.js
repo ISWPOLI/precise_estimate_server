@@ -39,6 +39,17 @@ class Project extends Model {
         )
     }
 
+    assingCostProjectRol(idProject, idRol, value, callback){
+        this.db.driver.execQuery(
+                "INSERT INTO project_rol (id_project, id_rol, value) VALUES (?,?,?)",
+                [idProject, idRol, value],
+                function (err, data) {
+                    if (err) throw err;
+                    callback(  data );
+                }
+        )
+    }
+
     findCompleteProject(id_project, callback) {
         this.db.driver.execQuery(
             "SELECT project.id_project, project.name as project, epic.id_epic, epic.name as epic, feature.id_feature, feature.name as feature, story.id_story, story.name as story, story.id_sprint, task.id_task, task.name as task FROM ((((project JOIN project_epic USING (id_project)) LEFT JOIN epic USING(id_epic)) LEFT JOIN feature USING(id_epic)) LEFT JOIN story USING(id_feature)) LEFT JOIN task USING(id_story) WHERE `id_project` = ?",

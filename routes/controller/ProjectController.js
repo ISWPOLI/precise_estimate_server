@@ -58,6 +58,10 @@ class ProjectController extends Controller {
         this.project.createProject(name, type, dateStart, dateEnd, valueEstimate, timeEstimate, idStatus, callback);
     }
 
+     assingCostProjectRol(idProject, idRol, value,callback){
+        this.project.assingCostProjectRol(idProject, idRol, value, callback);
+    }
+
 
 }
 
