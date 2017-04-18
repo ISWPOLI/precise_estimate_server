@@ -8,7 +8,7 @@ class FeatureService extends Service {
     this.path = '/feature';
   //this.router.get('/', this.listProject.bind(this));
     this.router.get('/editFeature', this.editFeature.bind(this));
-    this.router.get('/createFeature', this.createFeature.bind(this));
+    this.router.post('/createFeature', this.createFeature.bind(this));
     this.featureController = new FeatureController();
   }
 
