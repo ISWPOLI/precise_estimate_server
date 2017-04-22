@@ -72,6 +72,17 @@ class Project extends Model {
         )
     }
 
+    editProject(name, type, dateStart, dateEnd, value, time, idStatus, idProject, callback){
+        this.db.driver.execQuery(
+            "UPDATE project SET name = ?, type = ?, date_start = ?, date_end = ?, value_estimate_total = ?, time_estimate_total = ?, id_status = ? WHERE id_project = ?",
+            [name, type, dateStart, dateEnd, value, time, idStatus,idProject],
+            function (err, data) {
+                if (err, data);
+                callback(data);
+            }
+        )
+    }
+
 
 }
 

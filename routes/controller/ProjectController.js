@@ -66,6 +66,10 @@ class ProjectController extends Controller {
         this.project.findProject(idProject, callback);
     }
 
+    editProject(name, type, dateStart, dateEnd, value, time, idStatus, idProject, callback){
+        this.project.editProject(name, type, dateStart, dateEnd, value, time, idStatus, idProject, callback);
+    }
+
 
 }
 
