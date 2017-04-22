@@ -59,7 +59,9 @@ class Project extends Model {
                 callback(data);
             }
         )
-    }
+    
+
+}
 
 
 
