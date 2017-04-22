@@ -26,18 +26,18 @@ class ProjectService extends Service {
     });
   }
 
-  createProject(req, res, next){
-    this.projectController.createProject(req.body.name, req.body.type, req.body.dateStart, req.body.dateEnd, req.body.valueEstimate, req.body.timeEstimate, req.body.idStatus, function(data){
-      res.json({"Insert":data});
-    }); 
+  createProject(req, res, next) {
+    this.projectController.createProject(req.body.name, req.body.type, req.body.dateStart, req.body.dateEnd, req.body.valueEstimate, req.body.timeEstimate, req.body.idStatus, function (data) {
+      res.json({ "Insert": data });
+    });
   }
 
-  assingCostProjectRol(req, res, next){
-  this.projectController.assingCostProjectRol(req.query.idProject, req.query.idRol, req.query.value, function(data){
-      res.json({"Insert":data});
-    }); 
+  assingCostProjectRol(req, res, next) {
+    this.projectController.assingCostProjectRol(req.query.idProject, req.query.idRol, req.query.value, function (data) {
+      res.json({ "Insert": data });
+    });
   }
 
-  };
+};
 
 module.exports = new ProjectService();
