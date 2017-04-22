@@ -11,7 +11,7 @@ class ProjectService extends Service {
     this.router.get('/getCompleteProject', this.getCompleteProject.bind(this));
     this.router.get('/assingCostProjectRol', this.assingCostProjectRol.bind(this));
     this.router.get('/findProject', this.findProject.bind(this));
-    this.router.get('/editProject', this.editProject.bind(this));    
+    this.router.get('/editProject', this.editProject.bind(this));
     this.projectController = new ProjectController();
   }
 
