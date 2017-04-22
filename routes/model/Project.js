@@ -39,14 +39,14 @@ class Project extends Model {
         )
     }
 
-    assingCostProjectRol(idProject, idRol, value, callback){
+    assingCostProjectRol(idProject, idRol, value, callback) {
         this.db.driver.execQuery(
-                "INSERT INTO project_rol (id_project, id_rol, value) VALUES (?,?,?)",
-                [idProject, idRol, value],
-                function (err, data) {
-                    if (err) throw err;
-                    callback(  data );
-                }
+            "INSERT INTO project_rol (id_project, id_rol, value) VALUES (?,?,?)",
+            [idProject, idRol, value],
+            function (err, data) {
+                if (err) throw err;
+                callback(data);
+            }
         )
     }
 
@@ -59,9 +59,7 @@ class Project extends Model {
                 callback(data);
             }
         )
-    
-
-}
+    }
 
 
 
