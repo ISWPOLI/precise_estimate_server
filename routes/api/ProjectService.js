@@ -7,7 +7,7 @@ class ProjectService extends Service {
     super();
     this.path = '/project';
     this.router.get('/', this.listProject.bind(this));
-    this.router.get('/createProject', this.createProject.bind(this));
+    this.router.post('/createProject', this.createProject.bind(this));
     this.router.get('/getCompleteProject', this.getCompleteProject.bind(this));
     this.router.get('/assingCostProjectRol', this.assingCostProjectRol.bind(this));
     this.projectController = new ProjectController();
@@ -27,7 +27,7 @@ class ProjectService extends Service {
   }
 
   createProject(req, res, next){
-    this.projectController.createProject(req.query.name, req.query.type, req.query.dateStart, req.query.dateEnd, req.query.valueEstimate, req.query.timeEstimate, req.query.idStatus, function(data){
+    this.projectController.createProject(req.body.name, req.body.type, req.body.dateStart, req.body.dateEnd, req.body.valueEstimate, req.body.timeEstimate, req.body.idStatus, function(data){
       res.json({"Insert":data});
     }); 
   }
