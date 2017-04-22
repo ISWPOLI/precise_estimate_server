@@ -47,7 +47,7 @@ class ProjectService extends Service {
   }
 
   editProject(req, res, next) {
-    this.projectController.editProject(req.query.name, req.query.type, req.query.dateStart, req.query.dateEnd, req.query.value, req.query.time, req.query.idStatus, req.query.idProject, function (data) {
+    this.projectController.editProject(req.body.name, req.body.type, req.body.dateStart, req.body.dateEnd, req.body.value, req.body.time, req.body.idStatus, req.body.idProject, function (data) {
       res.json({ "Update": data });
     });
   }
