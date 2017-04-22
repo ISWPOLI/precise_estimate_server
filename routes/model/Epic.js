@@ -9,7 +9,7 @@ class Epic extends Model {
     initialize() {
         this.instance = this.db.define('epic', {
             id_epic: { type: 'serial', key: true }, // the auto-incrementing primary key
-            name: { type: 'text' }                        
+            name: { type: 'text' }
         });
         this.instance.bind(this);
     }
@@ -23,28 +23,29 @@ class Epic extends Model {
     }
 
 
-    createEpic(name, callback){
+    createEpic(name, idProject, callback) {
         this.db.driver.execQuery(
-          "INSERT INTO epic (name) VALUES (?)",
-          [name],
-          function (err, data) {
-            if (err) throw err;
-            callback(  data );
-          }
+            "CALL sp_project_epic(?,?)",
+            [name,idProject],
+            function (err, data) {
+                if (err) throw err; 
+                callback(data);               
+            }
         )
     }
 
 
-     editEpic(name, idEpic, callback){
+    editEpic(name, idEpic, callback) {
         this.db.driver.execQuery(
-          "UPDATE epic SET name = ? WHERE id_epic = ?",
-          [name,idEpic],
-          function (err, data) {
-            if (err) throw err;
-            callback(  data );
-          }
+            "UPDATE epic SET name = ? WHERE id_epic = ?",
+            [name, idEpic],
+            function (err, data) {
+                if (err) throw err;
+                callback(data);
+            }
         )
     }
+
 
 }
 
