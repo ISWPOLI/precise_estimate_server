@@ -62,6 +62,14 @@ class ProjectController extends Controller {
         this.project.assingCostProjectRol(idProject, idRol, value, callback);
     }
 
+    findProject(idProject, callback) {
+        this.project.findProject(idProject, callback);
+    }
+
+    editProject(name, type, dateStart, dateEnd, value, time, idStatus, idProject, callback){
+        this.project.editProject(name, type, dateStart, dateEnd, value, time, idStatus, idProject, callback);
+    }
+
 
 }
 
