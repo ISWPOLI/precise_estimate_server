@@ -63,7 +63,7 @@ class Project extends Model {
 
     findProject(idProject, callback) {
         this.db.driver.execQuery(
-            "SELECT * FROM project WHERE id_project = ?",
+            "SELECT name, type, DATE_FORMAT(date_start,'%Y-%m-%d') as date_start, DATE_FORMAT(date_end,'%Y-%m-%d') as date_end, value_estimate_total, value_estimate_total, id_status FROM project WHERE id_project = ?",
             [idProject],
             function (err, data) {
                 if (err, data);
