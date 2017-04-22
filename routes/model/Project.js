@@ -61,6 +61,16 @@ class Project extends Model {
         )
     }
 
+    findProject(idProject, callback) {
+        this.db.driver.execQuery(
+            "SELECT * FROM project WHERE id_project = ?",
+            [idProject],
+            function (err, data) {
+                if (err, data);
+                callback(data);
+            }
+        )
+    }
 
 
 }

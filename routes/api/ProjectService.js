@@ -10,6 +10,7 @@ class ProjectService extends Service {
     this.router.post('/createProject', this.createProject.bind(this));
     this.router.get('/getCompleteProject', this.getCompleteProject.bind(this));
     this.router.get('/assingCostProjectRol', this.assingCostProjectRol.bind(this));
+    this.router.get('/findProject',this.findProject.bind(this));
     this.projectController = new ProjectController();
   }
 
@@ -36,6 +37,12 @@ class ProjectService extends Service {
   this.projectController.assingCostProjectRol(req.query.idProject, req.query.idRol, req.query.value, function(data){
       res.json({"Insert":data});
     }); 
+  }
+
+  findProject(req, res, next) {
+    this.projectController.findProject(req.query.idProject, function(rows){
+      res.json(rows);
+    });
   }
 
   };

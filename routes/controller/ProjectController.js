@@ -62,6 +62,10 @@ class ProjectController extends Controller {
         this.project.assingCostProjectRol(idProject, idRol, value, callback);
     }
 
+    findProject(idProject, callback) {
+        this.project.findProject(idProject, callback);
+    }
+
 
 }
 
