@@ -8,25 +8,32 @@ class StoryService extends Service {
     this.path = '/story';
     this.router.get('/', this.listStory.bind(this));
     this.router.get('/editStory', this.editStory.bind(this));
-    this.router.get('/createStory', this.createStory.bind(this));
+    this.router.post('/', this.createStory.bind(this));
+    this.router.post('/changeSprint', this.changeSprint.bind(this));
     this.storyController = new StoryController();
   }
 
   listStory(req, res, next) {
     this.storyController.getListStory(function (rows) {
-      	res.json(rows);
+      res.json(rows);
     });
   }
 
-  createStory(req, res, next){
-    this.storyController.createStory(req.query.name, req.query.idFeature, function(data){
-      res.json({"Insert":data});
-    }); 
+  createStory(req, res, next) {
+    this.storyController.createStory(req.body.name, req.body.idFeature, function (data) {
+      res.json({ "Insert": data });
+    });
   }
 
-  editStory(req, res, next){
-    this.storyController.editStory(req.query.name, req.query.idStory,function(data){
-      res.json({"Update":data});
+  editStory(req, res, next) {
+    this.storyController.editStory(req.query.name, req.query.idStory, function (data) {
+      res.json({ "Update": data });
+    });
+  }
+
+  changeSprint(req, res, next) {
+    this.storyController.changeSprint(req.body.idStory, req.body.idSprint, function (data) {
+      res.json({ "Update": data });
     });
   }
 

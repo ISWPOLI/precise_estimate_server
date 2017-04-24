@@ -21,6 +21,9 @@ class StoryController extends Controller {
         this.story.editStory(name, idStory, callback);
     }
 
+    changeSprint(idStory, idSprint, callback) {
+        this.story.changeSprint(idStory, idSprint, callback);
+    }
     
 }
 

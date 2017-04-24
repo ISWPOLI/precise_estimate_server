@@ -6,14 +6,13 @@ class FeatureService extends Service {
   constructor() {
     super();
     this.path = '/feature';
-  //this.router.get('/', this.listProject.bind(this));
     this.router.get('/editFeature', this.editFeature.bind(this));
-    this.router.post('/createFeature', this.createFeature.bind(this));
+    this.router.post('/', this.createFeature.bind(this));
     this.featureController = new FeatureController();
   }
 
   createFeature(req, res, next){
-    this.featureController.createFeature(req.query.name, req.query.idEpic, function(data){
+    this.featureController.createFeature(req.body.name, req.body.idEpic, function(data){
       res.json({"Insert":data});
     }); 
   }

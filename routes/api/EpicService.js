@@ -7,7 +7,7 @@ class EpicService extends Service {
     super();
     this.path = '/epic';
     this.router.get('/', this.getListEpic.bind(this));
-    this.router.get('/createEpic', this.createEpic.bind(this));
+    this.router.post('/', this.createEpic.bind(this));
     this.router.post('/editEpic', this.editEpic.bind(this));    
     this.epicController = new EpicController();
   }
@@ -20,7 +20,7 @@ class EpicService extends Service {
   }
 
   createEpic(req, res, next){
-    this.epicController.createEpic(req.query.name, req.query.idProject, function(data){
+    this.epicController.createEpic(req.body.name, req.body.idProject, function(data){
       res.json({"Insert":data});
     }); 
   }
@@ -30,7 +30,6 @@ class EpicService extends Service {
       res.json({"Update": data});
     });
   }
-  
 
 };
 

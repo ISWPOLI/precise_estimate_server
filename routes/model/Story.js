@@ -47,6 +47,17 @@ class Story extends Model {
         )
     }
 
+    changeSprint(idStory, idSprint, callback) {
+        this.db.driver.execQuery(
+            "UPDATE story SET id_sprint = ? WHERE id_story = ?",
+            [idSprint, idStory],
+            function (err, data) {
+                if (err) throw err;
+                callback(data);
+            }
+        )
+    }
+
 }
 
 module.exports = new Story();    

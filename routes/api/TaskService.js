@@ -8,7 +8,7 @@ class TaskService extends Service {
     this.path = '/task';
     this.router.get('/', this.listTask.bind(this));
     this.router.get('/editTask', this.editTask.bind(this));
-    this.router.get('/createTask', this.createTask.bind(this));
+    this.router.post('/', this.createTask.bind(this));
     this.router.get('/assingResponsable', this.assingResponsable.bind(this));
     this.router.get('/removeResponsable', this.removeResponsable.bind(this));
     this.router.get('/editResponsable', this.editResponsable.bind(this));
@@ -17,41 +17,39 @@ class TaskService extends Service {
 
   listTask(req, res, next) {
     this.taskController.getListTask(function (rows) {
-      	res.json(rows);
+      res.json(rows);
     });
   }
 
-  createTask(req, res, next){
-    this.taskController.createTask(req.query.name, req.query.idStory, function(data){
-      res.json({"Insert":data});
-    }); 
-  }
-
-  editTask(req, res, next){
-    this.taskController.editTask(req.query.name, req.query.idTask,function(data){
-      res.json({"Update":data});
+  createTask(req, res, next) {
+    this.taskController.createTask(req.body.name, req.body.description, req.body.time, req.body.idStory, function (data) {
+      res.json({ "Insert": data });
     });
   }
 
-  assingResponsable(req, res, next){
-    this.taskController.assingResponsable(req.query.idUser, req.query.idTask,function(data){
-      res.json({"Insert":data});
+  editTask(req, res, next) {
+    this.taskController.editTask(req.query.name, req.query.idTask, function (data) {
+      res.json({ "Update": data });
     });
   }
 
-  editResponsable(req, res, next){
-    this.taskController.editResponsable(req.query.idUser, req.query.idTask,function(data){
-      res.json({"Update":data});
+  assingResponsable(req, res, next) {
+    this.taskController.assingResponsable(req.query.idUser, req.query.idTask, function (data) {
+      res.json({ "Insert": data });
     });
   }
 
-  removeResponsable(req, res, next){
-    this.taskController.removeResponsable(req.query.idUser, req.query.idTask,function(data){
-      res.json({"Delete":data});
+  editResponsable(req, res, next) {
+    this.taskController.editResponsable(req.query.idUser, req.query.idTask, function (data) {
+      res.json({ "Update": data });
     });
   }
 
-  
+  removeResponsable(req, res, next) {
+    this.taskController.removeResponsable(req.query.idUser, req.query.idTask, function (data) {
+      res.json({ "Delete": data });
+    });
+  }
 
 };
 

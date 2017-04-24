@@ -13,27 +13,26 @@ class TaskController extends Controller {
         });
     }
 
-    createTask(name, idStory, callback){
-        this.task.createTask(name, idStory, callback);
+    createTask(name, description, time, idStory, callback) {
+        this.task.createTask(name, description, time, idStory, callback);
     }
 
-    editTask(name, idTask, callback){
+    editTask(name, idTask, callback) {
         this.task.editTask(name, idTask, callback);
     }
 
-    assingResponsable(idUser, idTask, callback){
+    assingResponsable(idUser, idTask, callback) {
         this.task.assingResponsable(idUser, idTask, callback);
     }
 
-    editResponsable(idUser, idTask, callback){
+    editResponsable(idUser, idTask, callback) {
         this.task.editResponsable(idUser, idTask, callback);
     }
 
-    removeResponsable(idUser, idTask, callback){
+    removeResponsable(idUser, idTask, callback) {
         this.task.removeResponsable(idUser, idTask, callback);
     }
 
-    
 }
 
 module.exports = TaskController;

@@ -5,6 +5,8 @@ class ProjectController extends Controller {
     constructor() {
         super();
         this.project = require('../model/Project');
+        this.release = require('../model/Release');
+        this.sprint = require('../model/Sprint');
     }
 
     getListProject(callback) {
@@ -53,12 +55,37 @@ class ProjectController extends Controller {
         });
     }
 
+    getReleasePlanning(id_project, callback) {
+        this.release.getReleasePlanning(id_project, function (rows) {
+            let resp = {};
+            for (let k in rows) {
+                if (!resp.hasOwnProperty("r" + rows[k].id_release)) {
+                    resp["r" + rows[k].id_release] = { sprints: {} };
+                }
+                var r = resp["r" + rows[k].id_release];
+                r.id_release = rows[k].id_release;
+                r.release = rows[k].nrelease;
+                r.due_date = rows[k].due_date;
+                if (rows[k].id_sprint != null) {
+                    if (!r.sprints.hasOwnProperty("s" + rows[k].id_sprint)) {
+                        r.sprints["s" + rows[k].id_sprint] = {};
+                    }
+                    var s = r.sprints["s" + rows[k].id_sprint];
+                    s.id_sprint = rows[k].id_sprint;
+                    s.sprint = rows[k].nsprint;
+                    s.start_date = rows[k].start_date;
+                    s.end_date = rows[k].end_date;
+                }
+            }
+            callback(resp);
+        });
+    }
 
     createProject(name, type, dateStart, dateEnd, valueEstimate, timeEstimate, idStatus, callback) {
         this.project.createProject(name, type, dateStart, dateEnd, valueEstimate, timeEstimate, idStatus, callback);
     }
 
-     assingCostProjectRol(idProject, idRol, value,callback){
+    assingCostProjectRol(idProject, idRol, value, callback) {
         this.project.assingCostProjectRol(idProject, idRol, value, callback);
     }
 
@@ -66,10 +93,25 @@ class ProjectController extends Controller {
         this.project.findProject(idProject, callback);
     }
 
-    editProject(name, type, dateStart, dateEnd, value, time, idStatus, idProject, callback){
+    editProject(name, type, dateStart, dateEnd, value, time, idStatus, idProject, callback) {
         this.project.editProject(name, type, dateStart, dateEnd, value, time, idStatus, idProject, callback);
     }
 
+    createRelease(name, id_project, due_date, callback) {
+        this.release.create(name, id_project, due_date, callback);
+    }
+
+    editRelease(id_release, name, id_project, due_date, callback) {
+        this.release.edit(id_release, name, id_project, due_date, callback);
+    }
+
+    createSprint(name, id_release, start_date, end_date, callback) {
+        this.sprint.create(name, id_release, start_date, end_date, callback);
+    }
+
+    editSprint(id_sprint, name, id_release, start_date, end_date, callback) {
+        this.sprint.edit(id_sprint, name, id_release, start_date, end_date, callback);
+    }
 
 }
 
