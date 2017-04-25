@@ -24,6 +24,10 @@ class StoryController extends Controller {
     changeSprint(idStory, idSprint, callback) {
         this.story.changeSprint(idStory, idSprint, callback);
     }
+
+    removeStory(idStory,callback){
+        this.story.removeStory(idStory, callback);
+    }
     
 }
 

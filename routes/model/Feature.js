@@ -38,6 +38,17 @@ class Feature extends Model {
         )
     }
 
+    removeFeature(idFeature, callback){
+        this.db.driver.execQuery(
+            "call sp_remove_feature (?);",
+            [idFeature],
+            function (err, data) {
+                if (err) throw err;
+                callback(data);
+            }
+        )
+    }
+
 }
 
 module.exports = new Feature();    

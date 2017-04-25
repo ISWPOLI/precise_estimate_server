@@ -10,6 +10,7 @@ class StoryService extends Service {
     this.router.get('/editStory', this.editStory.bind(this));
     this.router.post('/', this.createStory.bind(this));
     this.router.post('/changeSprint', this.changeSprint.bind(this));
+    this.router.post('/removeStory', this.removeStory.bind(this));
     this.storyController = new StoryController();
   }
 
@@ -34,6 +35,12 @@ class StoryService extends Service {
   changeSprint(req, res, next) {
     this.storyController.changeSprint(req.body.idStory, req.body.idSprint, function (data) {
       res.json({ "Update": data });
+    });
+  }
+
+  removeStory(req, res, next) {
+    this.storyController.removeStory(req.body.idStory, function (data) {
+      res.json({ "Delete": data });
     });
   }
 

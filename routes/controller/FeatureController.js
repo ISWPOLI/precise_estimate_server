@@ -16,6 +16,11 @@ class FeatureController extends Controller {
         this.feature.editFeature(name, idFeature, callback);
     }
 
+    removeFeature(idFeature,callback){
+        this.feature.removeFeature(idFeature, callback);
+    }
+    
+
     
 }
 

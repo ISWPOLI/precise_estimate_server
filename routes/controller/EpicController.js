@@ -21,6 +21,10 @@ class EpicController extends Controller {
         this.epic.editEpic(name, idEpic, callback);
     }
 
+    removeFeature(idFeature,callback){
+        this.feature.removeFeature(idFeature, callback);
+    }
+
 
 
 
