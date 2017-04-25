@@ -96,6 +96,17 @@ class Task extends Model {
         )
     }
 
+    removeTask(idTask, callback){
+        this.db.driver.execQuery(
+            "call sp_remove_task (?);",
+            [idTask],
+            function (err, data) {
+                if (err) throw err;
+                callback(data);
+            }
+        )
+    }
+
 }
 
 module.exports = new Task();    
