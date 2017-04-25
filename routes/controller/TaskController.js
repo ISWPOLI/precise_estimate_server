@@ -33,6 +33,10 @@ class TaskController extends Controller {
         this.task.removeResponsable(idUser, idTask, callback);
     }
 
+    getTaskforUser(idProject,callback){
+        this.task.getTaskforUser(idProject, callback);
+    }
+
 }
 
 module.exports = TaskController;
