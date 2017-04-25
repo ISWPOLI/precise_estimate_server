@@ -85,10 +85,10 @@ class Task extends Model {
         )
     }
 
-    getTaskforUser(idProject,callback){
+    getTaskforUser(idProject, idStatus, callback){
         this.db.driver.execQuery(
-            "select u.name ,count(*) as data from user u  inner join user_task ut on u.id_user = ut.id_user inner join task t on t.id_task = ut.id_task inner join story s on s.id_story = t.id_story inner join feature f on f.id_feature = s.id_feature inner join epic e on e.id_epic = f.id_epic inner join project_epic pe on e.id_epic = pe.id_epic inner join project p on p.id_project = pe.id_project where p.id_project = ? group by u.name",
-            [idProject],
+            "select u.name ,count(*) as data from user u  inner join user_task ut on u.id_user = ut.id_user inner join task t on t.id_task = ut.id_task inner join story s on s.id_story = t.id_story inner join feature f on f.id_feature = s.id_feature inner join epic e on e.id_epic = f.id_epic inner join project_epic pe on e.id_epic = pe.id_epic inner join project p on p.id_project = pe.id_project inner join status st on st.id_status = t.id_status where p.id_project = ? and st.id_status = ? group by u.name;",
+            [idProject, idStatus],
             function (err, data) {
                 if (err) throw err;
                 callback(data);

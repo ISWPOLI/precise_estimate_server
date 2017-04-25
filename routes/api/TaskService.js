@@ -53,7 +53,7 @@ class TaskService extends Service {
   }
 
   getTaskforUser(req, res, next) {
-    this.taskController.getTaskforUser(req.query.idProject, function (rows) {
+    this.taskController.getTaskforUser(req.query.idProject,req.query.idStatus, function (rows) {
       res.json(rows);
     });
   }
