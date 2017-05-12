@@ -46,6 +46,17 @@ class Epic extends Model {
         )
     }
 
+    removeEpic(idEpic, callback){
+        this.db.driver.execQuery(
+            "call sp_remove_epic (?);",
+            [idEpic],
+            function (err, data) {
+                if (err) throw err;
+                callback(data);
+            }
+        )
+    }
+
 
 }
 

@@ -113,6 +113,10 @@ class ProjectController extends Controller {
         this.sprint.edit(id_sprint, name, id_release, start_date, end_date, callback);
     }
 
+    removeProject(idProject,callback){
+        this.project.removeProject(idProject, callback);
+    }
+
 }
 
 module.exports = ProjectController;

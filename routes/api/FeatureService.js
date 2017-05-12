@@ -7,6 +7,7 @@ class FeatureService extends Service {
     super();
     this.path = '/feature';
     this.router.get('/editFeature', this.editFeature.bind(this));
+    this.router.get('/removeFeature', this.removeFeature.bind(this));
     this.router.post('/', this.createFeature.bind(this));
     this.featureController = new FeatureController();
   }
@@ -20,6 +21,12 @@ class FeatureService extends Service {
   editFeature(req, res, next){
     this.featureController.editFeature(req.query.name, req.query.idFeature,function(data){
       res.json({"Update":data});
+    });
+  }
+
+  removeFeature(req, res, next) {
+    this.featureController.removeFeature(req.body.idFeature, function (data) {
+      res.json({ "Delete": data });
     });
   }
 

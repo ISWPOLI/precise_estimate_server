@@ -58,6 +58,17 @@ class Story extends Model {
         )
     }
 
+    removeStory(idStory, callback){
+        this.db.driver.execQuery(
+            "call sp_remove_story (?);",
+            [idStory],
+            function (err, data) {
+                if (err) throw err;
+                callback(data);
+            }
+        )
+    }
+
 }
 
 module.exports = new Story();    
