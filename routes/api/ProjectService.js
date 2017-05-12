@@ -17,6 +17,7 @@ class ProjectService extends Service {
     this.router.post('/editRelease', this.editRelease.bind(this));
     this.router.post('/createSprint', this.createSprint.bind(this));
     this.router.post('/editSprint', this.editSprint.bind(this));
+    this.router.post('/removeProject', this.removeProject.bind(this));
     this.projectController = new ProjectController();
   }
 
@@ -84,6 +85,12 @@ class ProjectService extends Service {
   editSprint(req, res, next) {
     this.projectController.editSprint(req.body.idSprint, req.body.name, req.body.idRelease, req.body.startDate, req.body.endDate, function (data) {
       res.json({ "Update": data });
+    });
+  }
+
+  removeProject(req, res, next) {
+    this.projectcController.removeProject(req.body.idProject, function (data) {
+      res.json({ "Delete": data });
     });
   }
 

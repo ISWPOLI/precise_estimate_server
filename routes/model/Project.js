@@ -83,6 +83,17 @@ class Project extends Model {
         )
     }
 
+    removeProject(idProject, callback){
+        this.db.driver.execQuery(
+            "call sp_remove_project (?);",
+            [idProject],
+            function (err, data) {
+                if (err) throw err;
+                callback(data);
+            }
+        )
+    }
+
 
 }
 

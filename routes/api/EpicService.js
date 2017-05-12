@@ -9,6 +9,7 @@ class EpicService extends Service {
     this.router.get('/', this.getListEpic.bind(this));
     this.router.post('/', this.createEpic.bind(this));
     this.router.post('/editEpic', this.editEpic.bind(this));    
+    this.router.post('/removeEpic', this.removeEpic.bind(this));        
     this.epicController = new EpicController();
   }
 
@@ -28,6 +29,12 @@ class EpicService extends Service {
   editEpic(req, res, next){
     this.epicController.editEpic(req.query.name, req.query.idEpic, function(data){
       res.json({"Update": data});
+    });
+  }
+
+  removeEpic(req, res, next) {
+    this.epicController.removeEpic(req.body.idEpic, function (data) {
+      res.json({ "Delete": data });
     });
   }
 
