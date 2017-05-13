@@ -109,7 +109,7 @@ class Task extends Model {
 
     getTask(idTask, callback){
         this.db.driver.execQuery(
-            "SELECT name, description, time, fase, date_start, date_end, status FROM task t LEFT JOIN status s ON t.id_status = s.id_status WHERE id_task = ?;",
+            "SELECT name, description, time, date_start, date_end, status FROM task t LEFT JOIN status s ON t.id_status = s.id_status WHERE id_task = ?;",
             [idTask],
             function(err, data) {
                 if (err) throw err;
