@@ -4,6 +4,7 @@ class Main {
     this.restPath = '/api';
     this.routers = [];
     this.express = require('express');
+    this.cors = require('cors');
     this.path = require('path');
     this.favicon = require('serve-favicon');
     this.logger = require('morgan');
@@ -13,7 +14,9 @@ class Main {
     this.app = this.express();
     this.app.set('views', this.path.join(__dirname, 'views'));
     this.app.set('view engine', 'jade');
-
+    
+    this.app.use(this.cors());
+    this.app.options('*', this.cors());
     this.app.use(this.favicon(this.path.join(__dirname, 'public', 'favicon.png')));
     this.app.use(this.logger('dev'));
     this.app.use(this.bodyParser.json());
@@ -22,6 +25,7 @@ class Main {
     this.app.use(this.express.static(this.path.join(__dirname, 'public')));
 
     let index = require('./routes/api/IndexService');
+    index.setCors(this.cors);
     this.app.use(index.path, index.router);
     this.configServices();
 
@@ -48,6 +52,7 @@ class Main {
 
   register(url) {
     let def_class = require(url);
+    def_class.setCors(this.cors);
     this.app.use(this.restPath + def_class.path, def_class.router);
   }
 

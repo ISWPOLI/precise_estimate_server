@@ -6,6 +6,10 @@ class Service {
         this.util = require('util');
     }
 
+    setCors(cors){
+        this.cors = cors;
+    }
+
 }
 
 module.exports = Service;

@@ -1,2 +1,2 @@
 #!/bin/bash
-npm start
+npm start 1>logs/status.log 2>logs/error.log
