@@ -4,7 +4,7 @@ var opts = {
   host: 'localhost',
   database: 'precise',
   user: 'root',
-  password: 'app123mysql',
+  password: 'apps123mysql',
   protocol: 'mysql',
   port: '3306',
   query: { pool: true }
