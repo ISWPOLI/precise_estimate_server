@@ -33,25 +33,25 @@ class TaskController extends Controller {
         this.task.removeResponsable(idUser, idTask, callback);
     }
 
-    getTaskforUser(idProject,idStatus,callback){
+    getTaskforUser(idProject, idStatus, callback) {
         this.task.getTaskforUser(idProject, idStatus, callback);
     }
 
-    removeTask(idTask,callback){
+    removeTask(idTask, callback) {
         this.task.removeTask(idTask, callback);
     }
 
-    getTask(idTask, callback){
+    getTask(idTask, callback) {
         this.task.getTask(idTask, callback);
     }
 
-     setTaskStatus(idStatus, idTask, callback){
-         this.task.setTaskStatus(idStatus, idTask, callback);
-     }    
+    setTaskStatus(idTask, idStatus, callback) {
+        this.task.setTaskStatus(idStatus, idTask, callback);
+    }
 
-     getTaskbyUser(idUser,callback){
+    getTaskbyUser(idUser, callback) {
         this.task.getTaskbyUser(idUser, callback);
-    }     
+    }
 
 }
 
