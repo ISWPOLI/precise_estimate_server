@@ -13,6 +13,7 @@ class TaskService extends Service {
     this.router.get('/removeResponsable', this.removeResponsable.bind(this));
     this.router.get('/editResponsable', this.editResponsable.bind(this));
     this.router.get('/getTaskforUser', this.getTaskforUser.bind(this));
+    this.router.get('/getTaskbyUser', this.getTaskbyUser.bind(this));
     this.router.delete('/removeTask', this.removeTask.bind(this));
     this.router.get('/getTask', this.getTask.bind(this));
     this.router.post('/setTaskStatus', this.setTaskStatus.bind(this));
@@ -78,6 +79,14 @@ class TaskService extends Service {
     this.taskController.setTaskStatus(req.body.idTask, req.body.idStatus, function(data){
       res.json({"Update": data});
     });
+  }
+
+  getTaskbyUser(req, res, next) {
+    this.taskController.getTaskbyUser(req.query.idUser, function (rows) {
+      res.json(rows);
+    });
+
+
   }
 
 };

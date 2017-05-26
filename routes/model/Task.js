@@ -130,7 +130,16 @@ class Task extends Model {
         )       
     }
 
-
+    getTaskbyUser(idUser, callback){
+        this.db.driver.execQuery(
+            "select t.* from task t inner join user_task ut on t.id_task = ut.id_task inner join user u on u.id_user = ut.id_user where u.id_user = ?;",
+            [idUser],
+            function (err, data) {
+                if (err) throw err;
+                callback(data);
+            }
+        )
+    }
     
 
 }

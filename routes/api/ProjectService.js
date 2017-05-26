@@ -96,7 +96,7 @@ class ProjectService extends Service {
   }
 
   getProjectbyStatus(req, res, next) {
-        this.projectController.getProjectbyStatus(req.quey.idProject, function (rows) {
+        this.projectController.getProjectbyStatus(req.query.idProject, function (rows) {
           res.json(rows);
         });
     }

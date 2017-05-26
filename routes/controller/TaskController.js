@@ -47,7 +47,11 @@ class TaskController extends Controller {
 
      setTaskStatus(idStatus, idTask, callback){
          this.task.setTaskStatus(idStatus, idTask, callback);
-     }         
+     }    
+
+     getTaskbyUser(idUser,callback){
+        this.task.getTaskbyUser(idUser, callback);
+    }     
 
 }
 
