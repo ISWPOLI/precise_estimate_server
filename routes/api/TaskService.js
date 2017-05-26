@@ -15,6 +15,7 @@ class TaskService extends Service {
     this.router.get('/getTaskforUser', this.getTaskforUser.bind(this));
     this.router.delete('/removeTask', this.removeTask.bind(this));
     this.router.get('/getTask', this.getTask.bind(this));
+    this.router.get('/setTaskStatus', this.setTaskStatus.bind(this));
     
     this.taskController = new TaskController();
   }
@@ -70,6 +71,12 @@ class TaskService extends Service {
   getTask(req, res, next){
     this.taskController.getTask(req.query.idTask, function (rows) {
       res.json(rows);
+    });
+  }
+
+  setTaskStatus(req, res, next){
+    this.taskController.setTaskStatus(req.body.idTask, req.body.idStatus, function(data){
+      res.json({"Update": data});
     });
   }
 

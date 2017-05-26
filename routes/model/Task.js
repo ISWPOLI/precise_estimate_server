@@ -118,6 +118,21 @@ class Task extends Model {
         )
     }
 
+
+    setTaskStatus(idStatus, idTask, callback){
+        this.db.driver.execQuery(
+            "UPDATE task SET id_status = ? WHERE id_task = ?",
+            [idStatus, idTask],
+            function(err, data){
+                if (err) throw err;
+                callback(data);
+            }
+        )       
+    }
+
+
+    
+
 }
 
 module.exports = new Task();    

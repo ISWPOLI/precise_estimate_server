@@ -45,6 +45,10 @@ class TaskController extends Controller {
         this.task.getTask(idTask, callback);
     }
 
+     setTaskStatus(idStatus, idTask, callback){
+         this.task.setTaskStatus(idStatus, idTask, callback);
+     }         
+
 }
 
 module.exports = TaskController;

@@ -18,6 +18,7 @@ class ProjectService extends Service {
     this.router.post('/createSprint', this.createSprint.bind(this));
     this.router.post('/editSprint', this.editSprint.bind(this));
     this.router.post('/removeProject', this.removeProject.bind(this));
+    this.router.get('/getProjectbyStatus', this.getProjectbyStatus.bind(this));
     this.projectController = new ProjectController();
   }
 
@@ -93,6 +94,12 @@ class ProjectService extends Service {
       res.json({ "Delete": data });
     });
   }
+
+  getProjectbyStatus(req, res, next) {
+        this.projectController.getProjectbyStatus(req.quey.idProject, function (rows) {
+          res.json(rows);
+        });
+    }
 
 };
 

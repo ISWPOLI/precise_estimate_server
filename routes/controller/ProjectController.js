@@ -117,6 +117,10 @@ class ProjectController extends Controller {
         this.project.removeProject(idProject, callback);
     }
 
+    getProjectbyStatus(idProject,callback){
+        this.project.getProjectbyStatus(idProject, callback);
+    }
+
 }
 
 module.exports = ProjectController;
