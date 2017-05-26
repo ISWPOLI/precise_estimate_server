@@ -96,7 +96,7 @@ class Project extends Model {
 
     getProjectbyStatus(idProject, callback){
         this.db.driver.execQuery(
-            "select p.name proyecto,s.status estado from project p inner join status s on p.id_status = s.id_status where id_project=?;",
+            "select p.name proyecto,s.status estado, count(*) cuenta from project p inner join status s on p.id_status = s.id_status where id_project= ? group by p.name, s.status;",
             [idProject],
             function (err, data){
                 if(err) throw err;
