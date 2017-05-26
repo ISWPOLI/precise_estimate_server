@@ -15,7 +15,7 @@ class TaskService extends Service {
     this.router.get('/getTaskforUser', this.getTaskforUser.bind(this));
     this.router.delete('/removeTask', this.removeTask.bind(this));
     this.router.get('/getTask', this.getTask.bind(this));
-    this.router.get('/setTaskStatus', this.setTaskStatus.bind(this));
+    this.router.post('/setTaskStatus', this.setTaskStatus.bind(this));
     
     this.taskController = new TaskController();
   }
